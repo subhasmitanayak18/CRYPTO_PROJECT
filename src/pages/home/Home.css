@@ -1,0 +1,126 @@
+.home{
+    padding: 0px 5px;
+    padding-bottom: 20px;
+}
+.a{
+    max-width: 600px;
+    margin:80px auto 10px auto;
+    display:flex;
+    flex-direction: column;
+    align-items:center;
+    text-align: center;
+    gap:20px;
+}
+.a h1{
+    font-size: max(4vw,36px);
+}
+.a p{
+    width:75%;
+    color: #e3e3e3;
+    line-height:1.5;
+}
+.a form{
+    padding: 8px;
+    width:80%;
+    background-color: white;
+    border-radius: 5px;
+    font-size: 20px;
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+    gap:10px;
+}
+.a input{
+    flex:1;
+    font-size: 16px;
+    outline: none;
+    border: none;
+    padding-left: 10px;
+}
+.a button{
+    border: none;
+    background: #7927ff;
+    color: white;
+    font-size: 16px;
+    padding: 10px 30px;
+    border-radius: 5px;
+    cursor:pointer;
+}
+.cryp-tab{
+    max-width: 800px;
+    margin: auto;
+    background: linear-gradient(rgba(84,3,255,0.15)), rgba(105,2,153,0.15);
+    border-radius: 15px;
+}
+.tab-lay{
+    display:grid;
+    grid-template-columns: 0.5fr 2fr 1fr 1fr 1.5fr;
+    padding: 15px 20px;
+    align-items: center;
+    border-bottom: 1px solid #3c3c3c;
+}
+.mar-cap{
+    text-align: right;
+}
+.tab-lay:last-child{
+    border: none;
+}
+.tab-lay div{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.tab-lay div img{
+    width: 35px;
+    height:35px;
+    object-fit: contain;
+}
+.tab-lay.green{
+    color: #00D515;
+    text-align: center;
+
+}
+.tab-lay.red{
+    color: #ff4646;
+    text-align: center;
+}
+@media (max-width: 768px){
+    .tab-lay{
+        grid-template-columns:0.5fr 3fr 1fr 1fr;
+    }
+    .mar-cap{
+        display: none;
+    }
+}
+@media (max-width: 500px){
+    .tab-lay div img{
+        width:25px ;
+    }
+    .tab-lay{
+        font-size: 13px;
+    }
+    .a form input{
+        width:100px;
+    }
+}
+.tabs {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin: 20px 0;
+}
+
+.tabs button {
+  padding: 8px 16px;
+  border: none;
+  background: #444;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.tabs .active {
+  background: #7927ff;
+}
+
