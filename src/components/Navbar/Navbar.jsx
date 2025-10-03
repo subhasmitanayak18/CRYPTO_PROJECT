@@ -1,12 +1,19 @@
-import React, { useContext } from 'react'
+import React, { useContext, useState } from 'react'
 import './Navbar.css'
 import logo from '../../assets/logo.png'
 import arrow_icon from '../../assets/arrow_icon.png'
 import { CoinContext } from '../../context/CoinContext'
 import { Link } from 'react-router-dom'
+import { auth } from '../../firebase';
+import { createUserWithEmailAndPassword } from 'firebase/auth';
+
 const Navbar = () => {
-  const{setCurrency} = useContext(CoinContext)
-  const currencyHandler = (event)=>{
+  const{setCurrency} = useContext(CoinContext);
+  const[email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [showSignup, setShowSignup] = useState(false); 
+
+const currencyHandler = (event)=>{
     switch(event.target.value){
     case "usd": {
       setCurrency({name:"usd", symbol:"$"});
@@ -41,7 +48,24 @@ const Navbar = () => {
       break;
     }
   }
-  }
+  };
+ const signupHandler = async () => {
+    if (!email || !password) {
+      alert("Please enter email and password");
+      return;
+    }
+    try {
+      const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+      console.log("User created:", userCredential.user);
+      alert("Signup successful!");
+      setEmail('');
+      setPassword('');
+      setShowSignup(false); // Close form
+    } catch (error) {
+      console.error(error);
+      alert(error.message);
+    }
+  };
   return (
    <div className='navbar'>
     <Link to={'/'}>
@@ -63,10 +87,33 @@ const Navbar = () => {
            <option value="aud">AUD</option>
            <option value="cad">CAD</option>
         </select>
-        <button>Sign Up<img src={arrow_icon} alt=""/></button>
+        {!showSignup && 
+          <button onClick={() => setShowSignup(true)}>
+            Sign Up <img src={arrow_icon} alt="" />
+          </button>
+        }
+
+        {showSignup && (
+          <div className='signup-form'>
+            <input
+              type="email"
+              placeholder="Email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+            />
+            <input
+              type="password"
+              placeholder="Password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
+            <button onClick={signupHandler}>Sign Up</button>
+            <button onClick={() => setShowSignup(false)}>Cancel</button>
+          </div>
+        )}
       </div>
     </div>
   )
 }
 
-export default Navbar
+export default Navbar;
