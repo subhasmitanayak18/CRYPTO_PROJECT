@@ -68,17 +68,7 @@ const getFilteredCoins = () => {
     Top 10 by Market Cap
   </button>
   <button
-    className={activeTab === "gainers" ? "active" : ""}
-    onClick={() => setActiveTab("gainers")}
-  >
-    Top 10 Gainers
-  </button>
-  <button
-    className={activeTab === "losers" ? "active" : ""}
-    onClick={() => setActiveTab("losers")}
-  >
-    Top 10 Losers
-  </button>
+    
 </div>
 
       <div className='cryp-tab'>
